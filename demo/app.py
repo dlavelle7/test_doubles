@@ -27,8 +27,6 @@ todo = api.model('Todo', {
 })
 
 
-# TODO: Use connection CLI with swagger "examples" response property to create
-# test doubles (https://connexion.readthedocs.io/en/latest/cli.html)
 class TodoDAO(object):
     def __init__(self):
         self.counter = 0
@@ -58,16 +56,18 @@ class TodoDAO(object):
 DAO = TodoDAO()
 
 
+# TODO: Use connection CLI with swagger "examples" response property to create
+# test doubles (https://connexion.readthedocs.io/en/latest/cli.html)
 @ns.route('/')
 class TodoList(Resource):
     '''Shows a list of all todos, and lets you POST to add new tasks'''
-    @ns.doc('list_todos')
+    @ns.doc('list_todos', responses={200: 'TODOs list'})
     @ns.marshal_list_with(todo)
     def get(self):
         '''List all tasks'''
         return DAO.todos
 
-    @ns.doc('create_todo')
+    @ns.doc('create_todo', responses={201: 'TODO created'})
     @ns.expect(todo)
     @ns.marshal_with(todo, code=201)
     def post(self):
@@ -80,7 +80,7 @@ class TodoList(Resource):
 @ns.param('id', 'The task identifier')
 class Todo(Resource):
     '''Show a single todo item and lets you delete them'''
-    @ns.doc('get_todo')
+    @ns.doc('get_todo', responses={200: 'Get a TODO'})
     @ns.marshal_with(todo)
     def get(self, id):
         '''Fetch a given resource'''
@@ -88,13 +88,14 @@ class Todo(Resource):
         if todo is None:
             raise NotFound
 
-    @ns.doc('delete_todo')
+    @ns.doc('delete_todo', responses={204: 'Delete a TODO'})
     @ns.response(204, 'Todo deleted')
     def delete(self, id):
         '''Delete a task given its identifier'''
         DAO.delete(id)
-        return '', 204
+        return {}, 204
 
+    @ns.doc('update_todo', responses={200: 'Update a TODO'})
     @ns.expect(todo)
     @ns.marshal_with(todo)
     def put(self, id):
