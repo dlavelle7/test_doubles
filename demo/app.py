@@ -5,13 +5,11 @@ from flask_restplus import Api, Resource, fields
 from werkzeug.exceptions import NotFound
 
 app = Flask(__name__)
-app.config["SERVER_NAME"] = os.environ.get("HOSTNAME", "localhost")
 api = Api(app,
           version='1.0',
           title='TodoMVC API',
           validate=True,
-          description='A simple TodoMVC API'
-         )
+          description='A simple TodoMVC API')
 
 ns = api.namespace('todos', description='TODO operations')
 

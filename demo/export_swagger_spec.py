@@ -1,12 +1,6 @@
-"""This data is also available from the /swagger.json endpoint"""
 import yaml
+import requests
 
-from flask import json
+response = requests.get("http://localhost:5000/swagger.json")
 
-from app import app, api
-
-with app.app_context():
-    # json format
-    # print(json.dumps(api.__schema__))
-    # yaml format
-    print(yaml.dump(api.__schema__))
+print(yaml.dump(response.json()))

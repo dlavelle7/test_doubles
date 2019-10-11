@@ -1,8 +1,15 @@
 Demo
 ====
 
-Export demo app swagger yaml:
+First run the demo app:
 
 ```
-python demo/export_swagger_spec.py > openapi/my_api.yaml
+python demo/app.py
+
+```
+
+Then download its swagger spec and write to a yaml file:
+
+```
+python demo/export_swagger_spec.py > openapi/demo_api.yaml
 ```
