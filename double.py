@@ -1,6 +1,6 @@
 import connexion
 
-# TODO: Can the handlers get the "example" swagger values to return???
+# TODO: Find a simple way of defining and returning fixtures based on conditional logic
 
 def create_todo(*args, **kwargs):
     return {

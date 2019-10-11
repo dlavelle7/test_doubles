@@ -27,6 +27,8 @@ todo = api.model('Todo', {
 })
 
 
+# TODO: Use connection CLI with swagger "examples" response property to create
+# test doubles (https://connexion.readthedocs.io/en/latest/cli.html)
 class TodoDAO(object):
     def __init__(self):
         self.counter = 0
