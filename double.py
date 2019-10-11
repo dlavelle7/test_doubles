@@ -1,5 +1,6 @@
 import connexion
 
+# TODO: Can the handlers get the "example" swagger values to return???
 
 def create_todo(*args, **kwargs):
     return {
