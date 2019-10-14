@@ -1,12 +1,11 @@
-Test Doubles [WIP]
-==================
+# Test Doubles POC [WIP]
 
-Proof of concept to see if the Swagger spec of an API could be used with Connexion
-to create "test doubles", for the purpose of mocking services in a Microservices
-test environment.
+## Proof of Concept
 
-Test Doubles
-------------
+Use Flask RESTPlus generated Swagger spec to build "test doubles" with
+Connexion for testing Microservices
+
+## Test Doubles
 
 Implement 2 types of "test doubles", both defined by the actual APIs Swagger spec:
 
@@ -15,11 +14,10 @@ Implement 2 types of "test doubles", both defined by the actual APIs Swagger spe
 2. Test double that returns resources based on simple and easily defined conditional logic
 
 
-Demo
-----
+## Demo
 
 To demonstrate the "test doubles", I've created a demo API using Flask RESTPlus
-which automatically generates Swagger API Documentation.
+which automatically generates Swagger API specification.
 
 First run the demo app (to access the swagger.json endpoint):
 
@@ -35,15 +33,14 @@ mkdir openapi/
 python demo/export_swagger_spec.py > openapi/demo_api.yaml
 ```
 
-Example values test double
---------------------------
+### Example values test double
 
 Uses Connexion CLI to run a mock server which returns static example responses 
 on every request, from the example values in the Swagger spec.
 
 https://connexion.readthedocs.io/en/latest/cli.html
 
-Run the "test double" using Connexion CLI and the actual APIs Swagger spec:
+Run the "test double" using Connexion CLI with the APIs real Swagger spec:
 
 ```
 connexion run openapi/demo_api.yaml --mock=all
@@ -65,8 +62,7 @@ Unfortunately, Flask RESTPlus does not support the Open API response examples
 property, so the example values are pulled from the definitions.
 See: https://github.com/noirbizarre/flask-restplus/issues/733
 
-Conditional test double
------------------------
+### Conditional test double
 
 [TODO: Define the fixtures and the conditional logic in a simple manner]
 
