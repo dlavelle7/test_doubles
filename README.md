@@ -49,6 +49,8 @@ Run the "test double" using Connexion CLI and the actual APIs Swagger spec:
 connexion run openapi/demo_api.yaml --mock=all
 ```
 
+You can view the mock server swagger ui at: http://127.0.0.1:5000
+
 [TODO: I don't have examples for response yet, only for resources]
 
 Conditional test double

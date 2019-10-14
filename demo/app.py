@@ -61,13 +61,13 @@ DAO = TodoDAO()
 @ns.route('/')
 class TodoList(Resource):
     '''Shows a list of all todos, and lets you POST to add new tasks'''
-    @ns.doc('list_todos', responses={200: 'TODOs list'})
+    @ns.response(200, "OK", todo)  # TODO: does this need to be a list?
     @ns.marshal_list_with(todo)
     def get(self):
         '''List all tasks'''
         return DAO.todos
 
-    @ns.doc('create_todo', responses={201: 'TODO created'})
+    @ns.response(201, "Created", todo)
     @ns.expect(todo)
     @ns.marshal_with(todo, code=201)
     def post(self):
@@ -80,7 +80,7 @@ class TodoList(Resource):
 @ns.param('id', 'The task identifier')
 class Todo(Resource):
     '''Show a single todo item and lets you delete them'''
-    @ns.doc('get_todo', responses={200: 'Get a TODO'})
+    @ns.response(200, "OK", todo)
     @ns.marshal_with(todo)
     def get(self, id):
         '''Fetch a given resource'''
@@ -88,14 +88,13 @@ class Todo(Resource):
         if todo is None:
             raise NotFound
 
-    @ns.doc('delete_todo', responses={204: 'Delete a TODO'})
-    @ns.response(204, 'Todo deleted')
+    @ns.response(204, "Deleted")
     def delete(self, id):
         '''Delete a task given its identifier'''
         DAO.delete(id)
-        return {}, 204
+        return "", 204
 
-    @ns.doc('update_todo', responses={200: 'Update a TODO'})
+    @ns.response(200, "Updated", todo)
     @ns.expect(todo)
     @ns.marshal_with(todo)
     def put(self, id):
