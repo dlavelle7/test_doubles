@@ -49,6 +49,16 @@ Run the "test double" using Connexion CLI and the actual APIs Swagger spec:
 connexion run openapi/demo_api.yaml --mock=all
 ```
 
+Now you can hit the test double and get an example response:
+
+```
+$ curl localhost:5000/todos/1
+{
+  "id": 1,
+  "task": "Take out the bins."
+}
+```
+
 You can view the mock server swagger ui at: http://127.0.0.1:5000
 
 Unfortunately, Flask RESTPlus does not support the Open API response examples

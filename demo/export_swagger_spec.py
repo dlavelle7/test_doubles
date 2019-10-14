@@ -10,7 +10,7 @@ def create_response_example(schema_ref):
     schema_name = schema_ref.split("#/definitions/")[1]
     # TODO: Inherit has 'allOf' property, would have to recursively call
     schema = schema_data["definitions"][schema_name]
-    # TODO: What about arry response types (schema 'type' property)?
+    # TODO: What about array response types (schema 'type' property)??
     example_object = {}
     for property_name, property_data in schema.get("properties", []).items():
         example_object[property_name] = property_data["example"]

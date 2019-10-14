@@ -56,8 +56,6 @@ class TodoDAO(object):
 DAO = TodoDAO()
 
 
-# TODO: Use connection CLI with swagger "examples" response property to create
-# test doubles (https://connexion.readthedocs.io/en/latest/cli.html)
 @ns.route('/')
 class TodoList(Resource):
     '''Shows a list of all todos, and lets you POST to add new tasks'''
