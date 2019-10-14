@@ -51,7 +51,9 @@ connexion run openapi/demo_api.yaml --mock=all
 
 You can view the mock server swagger ui at: http://127.0.0.1:5000
 
-[TODO: I don't have examples for response yet, only for resources]
+Unfortunately, Flask RESTPlus does not support the Open API response examples
+property, so the example values are pulled from the definitions.
+See: https://github.com/noirbizarre/flask-restplus/issues/733
 
 Conditional test double
 -----------------------
