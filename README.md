@@ -7,11 +7,13 @@ Connexion for testing Microservices
 
 ## Test Doubles
 
-Implement 2 types of "test doubles", both defined by the actual APIs Swagger spec:
+Implement 3 types of "test doubles", both defined by the actual APIs Swagger spec:
 
 1. Test double that returns resources using the "example" values from the Swagger spec
 
 2. Test double that returns resources based on simple and easily defined conditional logic
+
+3. Test double that returns random resource field values based on the field type
 
 
 ## Demo
@@ -71,3 +73,11 @@ Run the conditional test double:
 ```
 python double.py
 ```
+
+### Random values test double
+
+[TODO]
+
+## References
+
+This POC is inspired by the `Mountebank` and `swagger-bank` projects.
